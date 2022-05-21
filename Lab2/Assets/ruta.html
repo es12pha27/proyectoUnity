@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title></title>
+    <style> html, body, #map-canvas { height: 100%; margin: 0px; padding: 0px} </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+function CenterControle(controlDiv, map) { controlDiv.style.padding = '5px';controlDiv.className = "fullScreen";controlDiv.index = 1; var controlUI = document.createElement('div'); controlUI.style.backgroundColor = "white"; controlUI.style.borderStyle = "solid"; controlUI.style.borderWidth = "1px"; controlUI.style.borderColor = "#717b87"; controlUI.style.cursor = "pointer"; controlUI.style.textAlign = "center"; controlUI.style.boxShadow = "rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px"; controlDiv.appendChild(controlUI); var controlText = document.createElement('div'); controlText.style.fontFamily = "Roboto,Arial,sans-serif"; controlText.style.fontSize = "11px"; controlText.style.fontWeight = "400"; controlText.style.paddingTop = "1px"; controlText.style.paddingBottom = "1px"; controlText.style.paddingLeft = "6px"; controlText.style.paddingRight = "6px"; controlText.innerHTML = "Maximizar"; controlUI.appendChild(controlText); var head = document.getElementsByTagName("head")[0]; var newStyle = document.createElement("style"); newStyle.setAttribute("type", "text/css"); newStyle.setAttribute("media", "print"); var cssText = ".fullScreen { display: none;}"; google.maps.event.addDomListener(controlUI, 'click', function() { map.set(window.open("../maximizar/EC008-CC08.html", "", "width=1400, height=650")) }); }
+function CenterControl(controlDiv, map) { controlDiv.style.padding = '5px'; var controlUI = document.createElement('div'); controlUI.style.backgroundColor = 'blue'; controlUI.style.border='1px solid'; controlUI.style.cursor = 'pointer'; controlUI.style.textAlign = 'center'; controlDiv.appendChild(controlUI);
+  var controlText = document.createElement('div'); controlText.style.color='white'; controlText.style.fontFamily='Arial,sans-serif';
+  controlText.style.fontSize='10px'; controlText.style.paddingLeft = '4px'; controlText.style.paddingRight = '4px'; controlText.innerHTML = '<b>Ida<b>'
+  controlUI.appendChild(controlText);}
+function CenterControla(controlDiv, map) { controlDiv.style.padding = '5px'; var controlUI = document.createElement('div'); controlUI.style.backgroundColor = 'red'; controlUI.style.border='1px solid'; controlUI.style.cursor = 'pointer'; controlUI.style.textAlign = 'center'; controlDiv.appendChild(controlUI);
+  var controlText = document.createElement('div'); controlText.style.color='white'; controlText.style.fontFamily='Arial,sans-serif'; 	controlText.style.fontSize='10px'; controlText.style.paddingLeft = '4px'; controlText.style.paddingRight = '4px'; controlText.innerHTML = '<b>Vuelta<b>'
+  controlUI.appendChild(controlText);}
+function HomeControl(controlDiv, map) { controlDiv.style.padding = '5px';controlDiv.className = "fullScreen";controlDiv.index = 1; var controlUI = document.createElement('div'); controlUI.style.backgroundColor = "white"; controlUI.style.borderStyle = "solid"; controlUI.style.borderWidth = "1px"; controlUI.style.borderColor = "#717b87"; controlUI.style.cursor = "pointer"; controlUI.style.textAlign = "center"; controlUI.style.boxShadow = "rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px"; controlDiv.appendChild(controlUI); var controlText = document.createElement('div'); controlText.style.fontFamily = "Roboto,Arial,sans-serif"; controlText.style.fontSize = "11px"; controlText.style.fontWeight = "400"; controlText.style.paddingTop = "1px"; controlText.style.paddingBottom = "1px"; controlText.style.paddingLeft = "6px"; controlText.style.paddingRight = "6px"; controlText.innerHTML = "Imprimir"; controlUI.appendChild(controlText); var head = document.getElementsByTagName("head")[0]; var newStyle = document.createElement("style"); newStyle.setAttribute("type", "text/css"); newStyle.setAttribute("media", "print"); var cssText = ".fullScreen { display: none;}"; google.maps.event.addDomListener(controlUI, 'click', function() { map.set(window.print()) });}
+
+function initialize() {
+  var mapOptions = {
+    zoom: 12,
+    center: new google.maps.LatLng(-16.426522, -71.524099),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions); var homeControlDiv = document.createElement('div'); var homeControl = new HomeControl(homeControlDiv, map); map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+var centerControlDiva = document.createElement('div'); var idaa = new CenterControla(centerControlDiva, map); map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(centerControlDiva); var centerControlDiv = document.createElement('div'); var ida = new CenterControl(centerControlDiv, map); map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(centerControlDiv); var centerControlDive = document.createElement('div'); var idaaa = new CenterControle(centerControlDive, map); map.controls[google.maps.ControlPosition.TOP_RIGHT].push(centerControlDive);
+var infowindow = new google.maps.InfoWindow({
+    content: ''
+});
+ 
+var marcadores = [
+    {
+        position:{
+           lat : -16.414948	,		
+            lng : -71.492615
+        },
+        contenido: "<div id=\"content\">"+
+            "<h2>RECORRIDO DE IDA</h2>"+
+                "<div id=\"bodyContent\">" +
+                    "<p><b>IDA:</b>, TERMINAL - CL CUZCO(URB JORGE CHAVEZ) - AV LOS ALPES(URB JORGE CHAVEZ) - CL ROMA(URB JORGE CHAVEZ) - AV SAN MARTIN(URB JORGE CHAVEZ) - PR AV. MARISCAL CASTILLA - AV MARISCAL CASTILLA - AV INDEPENDENCIA - CL GARCI CARBAJAL(URB IV CENTENARIO) - CL MAYTA CAPAC(URB IV CENTENARIO).</p>" +
+                "</div>"+
+        "</div>"
+    },
+    {
+        position:{
+            lat : -16.405916	,	
+            lng : -71.531609
+				
+        },
+        contenido: 
+        "<div id=\"content\">"+
+            "<h2>RECORRIDO DE VUELTA</h2>"+
+                "<div id=\"bodyContent\">" +
+                    "<p><b>VUELTA</b>, CL VICTOR LIRA(URB IV CENTENARIO) - AV INDEPENDENCIA - CL PAUCARPATA(URB MUNICIPAL) - CL SEBASTIAN BARRANCA(URB LA PERLA) - CL MOJARRAS - AV VENEZUELA - PT GOMEZ DE LA TORRE - PR VIRGEN DEL PILAR(COOP UNIVERSITARIA) - AV JESUS(COOP UNIVERSITARIA) - AV LIMA(URB SANTA ROSA) - PR AV. MARISCAL CASTILLA - AV SAN MARTIN(URB PEDRO P DIAZ) - CL ROMA(URB JORGE CHAVEZ) - AV LOS ALPES(URB JORGE CHAVEZ) - CL CUZCO(URB JORGE CHAVEZ) - AV 1RO. DE MAYO(URB JORGE CHAVEZ) - AV SANTA CLARA(URB JORGE CHAVEZ) - TERMINAL.</p>" +
+                "</div>"+
+        "</div>"
+    }                       
+];
+for (var i = 0, j = marcadores.length; i < j; i++) {
+    var contenido = marcadores[i].contenido;
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(marcadores[i].position.lat, marcadores[i].position.lng),
+        map: map
+    });
+    (function(marker, contenido){                       
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(contenido);
+            infowindow.open(map, marker);
+        });
+    })(marker,contenido);
+}
+
+  var flightPlanCoordinates = [  //ROJO
+  new google.maps.LatLng(-16.414948,-71.492615),new google.maps.LatLng(-16.415211,-71.494286),new google.maps.LatLng(-16.415211,-71.494286),new google.maps.LatLng(-16.416498,-71.494072),new google.maps.LatLng(-16.416498,-71.494072),new google.maps.LatLng(-16.416847,-71.496643),new google.maps.LatLng(-16.416847,-71.496643),new google.maps.LatLng(-16.415655,-71.497162),new google.maps.LatLng(-16.415394,-71.497345),new google.maps.LatLng(-16.415178,-71.497574),new google.maps.LatLng(-16.41362,-71.499878),new google.maps.LatLng(-16.41362,-71.499878),new google.maps.LatLng(-16.413029,-71.499886),new google.maps.LatLng(-16.413029,-71.499886),new google.maps.LatLng(-16.41305,-71.500488),new google.maps.LatLng(-16.41305,-71.500488),new google.maps.LatLng(-16.413229,-71.500465),new google.maps.LatLng(-16.413229,-71.500465),new google.maps.LatLng(-16.411654,-71.502846),new google.maps.LatLng(-16.411654,-71.502846),new google.maps.LatLng(-16.406643,-71.510452),new google.maps.LatLng(-16.405252,-71.512627),new google.maps.LatLng(-16.405258,-71.512733),new google.maps.LatLng(-16.40309,-71.516029),new google.maps.LatLng(-16.40309,-71.516029),new google.maps.LatLng(-16.402462,-71.516975),new google.maps.LatLng(-16.402462,-71.516975),new google.maps.LatLng(-16.402021,-71.517693),new google.maps.LatLng(-16.401896,-71.517792),new google.maps.LatLng(-16.401501,-71.518295),new google.maps.LatLng(-16.399426,-71.521576),new google.maps.LatLng(-16.399426,-71.521576),new google.maps.LatLng(-16.400013,-71.522163),new google.maps.LatLng(-16.400164,-71.522423),new google.maps.LatLng(-16.408775,-71.532982),new google.maps.LatLng(-16.408775,-71.532982),new google.maps.LatLng(-16.407698,-71.533989),new google.maps.LatLng(-16.407698,-71.533989),new google.maps.LatLng(-16.407631,-71.533974),new google.maps.LatLng(-16.406296,-71.532204),new google.maps.LatLng(-16.406296,-71.532204),new google.maps.LatLng(-16.40592,-71.531723),
+	
+	
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#582EF2',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  
+  var flightPlanCoordinates2 = [ //Azul
+	new google.maps.LatLng(-16.405916,-71.531609),new google.maps.LatLng(-16.406431,-71.531219),new google.maps.LatLng(-16.406965,-71.530647),new google.maps.LatLng(-16.406965,-71.530647),new google.maps.LatLng(-16.404419,-71.527542),new google.maps.LatLng(-16.404346,-71.527397),new google.maps.LatLng(-16.404346,-71.527397),new google.maps.LatLng(-16.404449,-71.527374),new google.maps.LatLng(-16.404619,-71.527214),new google.maps.LatLng(-16.405212,-71.526459),new google.maps.LatLng(-16.406494,-71.525223),new google.maps.LatLng(-16.406494,-71.525223),new google.maps.LatLng(-16.407017,-71.525925),new google.maps.LatLng(-16.407137,-71.526207),new google.maps.LatLng(-16.40723,-71.526733),new google.maps.LatLng(-16.407528,-71.527145),new google.maps.LatLng(-16.407528,-71.527145),new google.maps.LatLng(-16.407902,-71.526871),new google.maps.LatLng(-16.408255,-71.526718),new google.maps.LatLng(-16.408255,-71.526718),new google.maps.LatLng(-16.407957,-71.525818),new google.maps.LatLng(-16.407145,-71.524506),new google.maps.LatLng(-16.40674,-71.523445),new google.maps.LatLng(-16.405832,-71.522224),new google.maps.LatLng(-16.405169,-71.520981),new google.maps.LatLng(-16.404854,-71.520508),new google.maps.LatLng(-16.404011,-71.519569),new google.maps.LatLng(-16.404011,-71.519569),new google.maps.LatLng(-16.404276,-71.51944),new google.maps.LatLng(-16.404276,-71.51944),new google.maps.LatLng(-16.403898,-71.518852),new google.maps.LatLng(-16.403696,-71.518021),new google.maps.LatLng(-16.403311,-71.517303),new google.maps.LatLng(-16.403202,-71.516571),new google.maps.LatLng(-16.403126,-71.516487),new google.maps.LatLng(-16.403126,-71.516487),new google.maps.LatLng(-16.403372,-71.516434),new google.maps.LatLng(-16.405563,-71.515511),new google.maps.LatLng(-16.405563,-71.515511),new google.maps.LatLng(-16.404585,-71.513893),new google.maps.LatLng(-16.404585,-71.513893),new google.maps.LatLng(-16.40526,-71.512863),new google.maps.LatLng(-16.405298,-71.512711),new google.maps.LatLng(-16.409292,-71.506569),new google.maps.LatLng(-16.415363,-71.497391),new google.maps.LatLng(-16.415518,-71.497223),new google.maps.LatLng(-16.416847,-71.496643),new google.maps.LatLng(-16.416847,-71.496643),new google.maps.LatLng(-16.416498,-71.494072),new google.maps.LatLng(-16.416498,-71.494072),new google.maps.LatLng(-16.415211,-71.494286),new google.maps.LatLng(-16.415211,-71.494286),new google.maps.LatLng(-16.414923,-71.492455),new google.maps.LatLng(-16.414923,-71.492455),new google.maps.LatLng(-16.414358,-71.492561),
+
+  ];
+  var flightPath2 = new google.maps.Polyline({
+    path: flightPlanCoordinates2,
+    geodesic: true,
+    strokeColor: ' #E7F211',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  
+  var lineSymbol = {
+	path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
+	rotation: 270,
+    scale: 4,
+    strokeColor: '#F09409'
+  };
+  
+  var lineSymbol2 = {
+	path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
+	rotation: 90,
+    scale: 4,
+    strokeColor: '#E8A643'
+  };
+
+  // Create the polyline and add the symbol to it via the 'icons' property.
+  line = new google.maps.Polyline({
+    path: flightPlanCoordinates2,
+	strokeColor: ' #CC0000',
+    icons: [{
+      icon: lineSymbol2,
+      offset: '0%'
+    }],
+    map: map
+  });
+  
+  line2 = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+	strokeColor: '#582EF2',
+    icons: [{
+      icon: lineSymbol,
+      offset: '100%'
+    }],
+    map: map
+  });
+  
+  flightPath2.setMap(map);
+  flightPath.setMap(map);
+  animateCircle(); 
+}
+function animateCircle() {
+    var count = 0;
+    window.setInterval(function() {
+      count = (count + 0.1) % 200;
+
+      var icons = line.get('icons');
+	  var icons2 = line2.get('icons');
+      icons[0].offset = (count / 2) + '%';
+	  icons2[0].offset = (count / 2) + '%';
+      line.set('icons', icons);
+	  line2.set('icons', icons2);
+  }, 20);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+ <body> <div id="map-canvas"></div> </body></html>
